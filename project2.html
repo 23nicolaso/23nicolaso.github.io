@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Title - Your Name</title>
+<link rel="stylesheet" href="styles.css"><!-- reuse your main CSS -->
+<style>
+/* Optional tweaks for project pages */
+.project-hero {
+  display:flex; align-items:center; justify-content:center; min-height:30vh;
+  background:#f2f2f2; padding:2rem; text-align:center;
+}
+.project-hero h1 {
+  font-size:clamp(2rem,8vw,4rem);
+}
+.project-content {
+  max-width:900px; margin: 3rem auto; padding:0 1rem; 
+}
+.project-banner {
+  width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.section {
+  margin: 3rem 0;
+}
+.section h2 {
+  font-size:2rem; margin-bottom:1rem; text-align:center;
+}
+.features {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
+}
+.feature-box {
+  background:#fafafa; padding:1.5rem; border-radius:15px; flex:1 1 250px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.project-links {
+  text-align:center; margin-top:3rem;
+}
+.btn {
+  display:inline-block; background:#007aff; color:#fff; padding:0.75rem 1.5rem;
+  border-radius:30px; margin:0.5rem; transition:.3s; font-weight:600; 
+}
+.btn:hover {background:#0051c6;}
+footer {
+  padding:2rem; text-align:center; background:#fafafa; font-size:0.9rem; color:#777;
+}
+</style>
+</head>
+<body>
+
+<header class="project-hero">
+  <h1>Gacha Clicker</h1>
+</header>
+
+<main class="project-content">
+
+  <!-- Project banner or screenshot -->
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <img src="gacha-clicker/clickingcookie.gif" alt="Clicking the cookie!" />
+      <img src="gacha-clicker/rolling.gif" alt="Rolling for a card" />
+      <img src="gacha-clicker/selectingcard.gif" alt="selecting cards for your active deck" />
+      <!-- Add as many images as needed -->
+    </div>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+  
+  
+
+  <!-- About the project -->
+  <section class="section">
+    <h2>About This Project</h2>
+    <p>Gacha Clicker is a fun prototype for a game, where you try to get as many cookies as possible by clicking and buying cookie generators. 
+      However, unlike in standard Cookie Clicker, you get generators by rolling for them, and can only use up to 6 generators at a time, so you have to be strategic about it! 
+      Heavily inspired by the game Cookie Clicker and Japanese Gacha game genre. </p>
+  </section>
+
+  <!-- Features / Tech -->
+  <section class="section">
+    <h2>Key Features</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Addictive Gameplay</h3>
+        <p>Shockingly addictive gameplay, making my friends finish it in one sitting</p>
+      </div>
+      <div class="feature-box">
+        <h3>Complex Combinations</h3>
+        <p>There are over 50 cards to collect, and many set bonuses to try out</p>
+      </div>
+      <div class="feature-box">
+        <h3>Modern Framework</h3>
+        <p>Built with React.js, Vite.js, HTML5</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section class="project-links">
+    <a href="https://23nicolaso.github.io/GachaClicker/" class="btn">Try the Game!</a>
+    <a href="https://github.com/23nicolaso/Ollama-Market" class="btn" target="_blank">Source Code</a>
+    <a href="index.html" class="btn">Back to Portfolio</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Nicolas Ollivier. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+<script>
+  const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+  slides.forEach((slide, index) => {
+    slide.classList.toggle('active', index === currentIndex);
+  });
+  const offset = -slides[currentIndex].offsetLeft + (track.offsetWidth - slides[currentIndex].offsetWidth)/2;
+  track.style.transform = `translateX(${offset}px)`;
+}
+
+prevBtn.onclick = () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateCarousel();
+}
+nextBtn.onclick = () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateCarousel();
+}
+
+// Swipe support (optional but nice)
+let startX = 0;
+track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+track.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - startX;
+  if(diff > 50) prevBtn.click();
+  else if(diff < -50) nextBtn.click();
+});
+
+// Initialize
+window.addEventListener('load', updateCarousel);
+window.addEventListener('resize', updateCarousel);
+
+</script>
