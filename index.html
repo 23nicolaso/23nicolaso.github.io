@@ -7,10 +7,20 @@
 <link rel="stylesheet" href="styles.css" />
 <script defer src="scripts.js"></script>
 </head>
-<body>
 
+<body>
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Nicolas Ollivier</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      </ul>
+  </div>
+</nav>
 <!-- Hero Section -->
 <section class="hero">
+  <img src="selfie.png" alt="selfie" class="hero-selfie">
   <div class="hero-content">
     <h1>Hi, I'm Nicolas Ollivier</h1>
     <p>A Software Developer and Local AI Enthusiast</p>
@@ -20,7 +30,7 @@
 
 <!-- Projects Showcase --> 
 <section id="projects" class="projects-section">
-  <h2>My Projects</h2>
+  <h2>My Work</h2>
   
   <!-- Project Banner 1 -->
   <div class="project-banner">
@@ -28,7 +38,7 @@
     <div class="overlay">
       <div class="overlay-content bottom-left">
         <h3>Ollama Market</h3>
-        <p>A simulated stock exchange with a sophisticated order matching engine and trading agents that trade off LLM generated outputs.</p>
+        <p>A simulated stock exchange powered by agentic AI.</p>
 
         <!-- Framework badges -->
         <div class="badges">
@@ -48,7 +58,7 @@
     <div class="overlay">
       <div class="overlay-content bottom-left">
         <h3>TradingView Indicator Suite</h3>
-        <p>A collection of 21 unique and open source trading indicators.</p>
+        <p>21 unique and open source trading indicators.</p>
           <!-- Framework badges -->
           <div class="badges">
             <span class="badge">Pinescript</span>
@@ -59,6 +69,60 @@
     </div>
   </div>
 
+      <!-- Project Banner 2 -->
+  <div class="project-banner">
+    <img src="gacha-clicker/gachaclicker.png" alt="Project image">
+    <div class="overlay">
+      <div class="overlay-content bottom-left">
+        <h3>Gacha Clicker</h3>
+        <p>Cookie clicker, but with Gacha mechanics!</p>
+          <!-- Framework badges -->
+          <div class="badges">
+            <span class="badge">React.JS</span>
+            <span class="badge">Typescript</span>
+            <span class="badge">Vite</span>
+            <!-- add more badges as needed -->
+          </div>
+        <a href="project2.html" class="overlay-btn">View Details</a>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Project Banner 3 -->
+  <div class="project-banner">
+    <img src="ajnx.png" alt="Project image">
+    <div class="overlay">
+      <div class="overlay-content bottom-left">
+        <h3>AJNX Banking</h3>
+        <p>A demo banking app I made for my databases class group project.</p>
+          <!-- Framework badges -->
+          <div class="badges">
+            <span class="badge">SQL</span>
+            <span class="badge">HeroUI</span>
+            <!-- add more badges as needed -->
+          </div>
+        <a href="https://db.aerex.tk/transactions" class="overlay-btn">View Website</a>
+      </div>
+    </div>
+  </div>
+  <div class="project-banner">
+    <img src="repairthewaves.png" alt="Project image">
+    <div class="overlay">
+      <div class="overlay-content bottom-left">
+        <h3>RepairTheWaves.com</h3>
+        <p>A website I made for a social enterprise.</p>
+          <!-- Framework badges -->
+          <div class="badges">
+            <span class="badge">HTML</span>
+            <span class="badge">JS</span>
+            <span class="badge">CSS</span>
+            <!-- add more badges as needed -->
+          </div>
+        <a href="https://repairthewaves.com" class="overlay-btn">View Website</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -66,7 +130,8 @@
 <section class="contact" id="contact">
   <h2>Let's Connect</h2>
   <p>Interested in collaborating or chatting? Reach out below!</p>
-  <a href="mailto:23nicolaso@gmail.com" class="contact-button">Email Me</a>
+  <a href="mailto:23nicolaso@gmail.com" class="contact-button">Email</a>
+  <a href="https://www.linkedin.com/in/nicolas-ollivier/" class="contact-button">LinkedIn</a>
 </section>
 
 <footer>

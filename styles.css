@@ -3,9 +3,10 @@
 
 :root {
   --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --primary-color: #000;
-  --accent-color: #007aff;
-  --background-color: #fff;
+  --primary-color: #141414;
+  --accent-color: #DC8059;
+  --background-color: #FAF9F5;
+  --darkerbg-color: #E3DCCC;
 }
 
 /* Reset */
@@ -30,6 +31,39 @@ h1, h2, h3 {
 a {
   color: var(--accent-color);
   text-decoration: none;
+}
+
+/* Basic Navbar Styling */
+.main-nav {
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.main-nav .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-nav .nav-logo {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.main-nav ul a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+.main-nav ul a:hover {
+  color: var(--accent-color);
 }
 
 /* Hero Section */
@@ -68,7 +102,7 @@ a {
   transform: translateY(-50%);
   font-size: 3rem;
   background: rgba(0,0,0,0.3);
-  color: #fff;
+  /* color: #fff; */
   border: none;
   border-radius: 50%;
   width: 60px;
@@ -99,19 +133,35 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
-  padding: 2rem;
-  background: #f2f2f2;
-  text-align: center;
+  /* min-height: 90vh; */ /* Original value */
+  min-height: 60vh;    /* Reduced height - adjust as you see fit */
+  /* Consider a max-height too, e.g., max-height: 700px; */
+  padding: 4rem 2rem; /* You might want to adjust padding */
+  /* background: #f2f2f2; */
+  text-align: left;
+  /* Optional: Add a subtle pattern or gradient for more impact */
+  /* Example pattern (you can find many CSS pattern generators online): */
+  background-color: var(--background-color);
+opacity: 0.9;
+background-image:  linear-gradient(var(--darkerbg-color) 1px, transparent 1px), linear-gradient(to right, var(--darkerbg-color) 1px, var(--background-color) 1px);
+background-size: 20px 20px;
+}
+
+.hero-selfie {
+  min-height: 20vw;
+  min-width: 18vw;
+  max-width: 18vw;
+  max-height: 20vw;
+  padding-right: 10vh;
 }
 
 .hero-content h1 {
-  font-size: clamp(2rem, 8vw, 4rem);
+  font-size: clamp(2rem, 7vw, 3.5rem); /* Slightly reduced max size for h1 if desired */
   margin-bottom: 1rem;
 }
 
 .hero-content p {
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Slightly reduced size */
   margin-bottom: 2rem;
 }
 
@@ -181,9 +231,36 @@ a {
   border-bottom: 2px solid var(--accent-color);
 }
 
+.project-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 90vh; */ /* Original value */
+  min-height: 30vh;    /* Reduced height - adjust as you see fit */
+  /* Consider a max-height too, e.g., max-height: 700px; */
+  padding: 4rem 2rem; /* You might want to adjust padding */
+  text-align: center;
+  /* Optional: Add a subtle pattern or gradient for more impact */
+  /* Example pattern (you can find many CSS pattern generators online): */
+  background-color: var(--background-color);
+  opacity: 0.9;
+  background-image:  linear-gradient(var(--darkerbg-color) 1px, transparent 1px), linear-gradient(to right, var(--darkerbg-color) 1px, var(--background-color) 1px);
+  background-size: 20px 20px;
+}
+
+.project-hero-content h1 {
+  font-size: clamp(2rem, 7vw, 3.5rem); /* Slightly reduced max size for h1 if desired */
+  margin-bottom: 1rem;
+}
+
+.project-hero-content p {
+  font-size: 1.3rem; /* Slightly reduced size */
+  margin-bottom: 2rem;
+}
+
 /* Contact */
 .contact {
-  background: #f2f2f2;
+  background: var(--darkerbg-color);
   padding: 5rem 2rem;
   text-align: center;
 }
@@ -201,15 +278,15 @@ a {
 .contact-button {
   display: inline-block;
   padding: 1rem 2rem;
-  background: var(--accent-color);
-  color: #fff;
+  background: var(--background-color);
+  color: var(--primary-color);
   border-radius: 30px;
   font-weight: 600;
   transition: background 0.3s;
 }
 
 .contact-button:hover {
-  background: #0051c6;
+  background: var(--darkerbg-color);
 }
 
 /* Footer */
@@ -217,23 +294,35 @@ footer {
   padding: 2rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #777;
-  background: #fafafa;
+  color: var(--primary-color);
+  background: var(--background-color);
 }
 
-/* Responsive: side by side on wide screens */
-@media(min-width:768px) {
-  .project {
-    flex-direction: row;
-    align-items: center;
-    gap:3rem;
+/* Responsive adjustments for the grid */
+@media(max-width: 992px) {
+  .project-banner {
+    /* 2 items per row */
+    width: calc((100% / 2) - (1.5rem * 1 / 2));
+    flex-basis: calc((100% / 2) - (1.5rem * 1 / 2));
   }
-  .project:nth-child(even){
-    flex-direction: row-reverse;
+}
+
+@media(max-width: 600px) {
+  .projects-section {
+    padding: 0 1rem; /* Adjust padding for smaller screens */
   }
-  .project-info {
-    text-align: left;
-    margin: 0;
+  .project-banner {
+    /* 1 item per row */
+    width: 100%;
+    flex-basis: 100%;
+    min-width: unset; /* Remove min-width if it conflicts on very small screens */
+  }
+  .overlay-content h3 {
+    font-size: 1.5rem; /* Slightly larger for single column layout */
+  }
+  .overlay-content p {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3; /* Allow more lines when single column */
   }
 }
 
@@ -241,8 +330,12 @@ footer {
 .projects-section {
   max-width: 1200px;
   margin: 5rem auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5rem;
 }
 .projects-section h2 {
   font-size: 2.5rem;
@@ -250,14 +343,23 @@ footer {
   font-weight: 600;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: #111;
+  width: 100%;
+  text-align: center;
 }
 
 .project-banner {
   position: relative;
-  margin-bottom: 3rem;
-  border-radius: 30px;
+  /* margin-bottom: 3rem; */
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  width: calc((100% / 3) - (1.5rem*2/3));
+  flex-grow: 1;
+  flex-basis: calc((100% / 3) - (1.5rem * 2 / 3));
+  /* Add a min-width for very small calculations if needed, or rely on media queries */
+  min-width: 280px; /* Example: prevents cards from becoming too narrow */
+  display: flex; /* To help with internal alignment if needed */
+  flex-direction: column; /* Stack image and overlay vertically */
 }
 
 .project-banner img {
@@ -274,57 +376,54 @@ footer {
 
 /* Gradient overlay with subtle fade */
 .overlay {
-  position: absolute;
+  position: absolute; /* Keeping overlay absolute for now */
   inset: 0;
-  border-radius: 30px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.5));
+  border-radius: 20px; /* Match banner radius */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%);
   display: flex;
-  align-items: end; /* text at bottom */
-  padding: 2rem;
+  align-items: end;
+  padding: 1rem; /* Reduced padding */
   transition: background 0.3s ease;
 }
 
 .project-banner:hover .overlay {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%);
 }
 
 .overlay-content {
-  color: #fff;
-  max-width: 600px;
+  color: var(--background-color);
+  max-width: 100%; /* Allow content to use full width of the padding box */
   text-align: left;
 }
 
 .overlay-content h3 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem; /* Reduced font size */
+  margin-bottom: 0.3rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--background-color);
 }
 
 .overlay-content p {
-  font-size: 1.2rem;
-  margin-bottom: 1.2rem;
-  color: #fff;
+  font-size: 0.85rem; /* Reduced font size */
+  margin-bottom: 0.8rem;
+  color: var(--background-color); /* Slightly lighter color for sub-text */
+  /* Optionally limit lines of text shown */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show max 2 lines of text */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .overlay-content .badges {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  margin-bottom: 0.8rem; /* Reduced margin */
+  gap: 0.3rem; /* Reduced gap */
 }
 
 .badge {
-  background-color: rgba(255,255,255,0.2);
-  color: #fff;
-  padding: 0.3rem 0.75rem;
-  font-size: 0.85rem;
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.3);
-  font-family: inherit;
-  font-weight: 500;
-  white-space: nowrap;
+  padding: 0.2rem 0.5rem; /* Reduced padding */
+  font-size: 0.7rem;    /* Reduced font size */
+  border-radius: 10px;
 }
 
 /* Optional: change colors for specific frameworks */
@@ -336,22 +435,46 @@ footer {
 
 
 .overlay-content .overlay-btn {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background: #007aff;
-  color: #fff;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: background 0.3s;
-  text-decoration: none;
-  font-family: inherit;
+  padding: 0.5rem 1rem; /* Reduced padding */
+  font-size: 0.8rem;   /* Reduced font size */
+  border-radius: 20px;
 }
 
 .overlay-content .overlay-btn:hover {
-  background: #0051c6;
+  background: var(--background-color);
 }
 
 /* Positioning options */
 .bottom-left {
   align-self: flex-end;
 }
+
+
+
+.project-content {
+  max-width:900px; margin: 3rem auto; padding:0 1rem; 
+}
+.project-banner {
+  width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.section {
+  margin: 3rem 0;
+}
+.section h2 {
+  font-size:2rem; margin-bottom:1rem; text-align:center;
+}
+.features {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
+}
+.feature-box {
+  background:var(--background-color); padding:1.5rem; border-radius:15px; flex:1 1 250px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.project-links {
+  text-align:center; margin-top:3rem;
+}
+.btn {
+  display:inline-block; background:var(--accent-color); color:var(--background-color); padding:0.75rem 1.5rem;
+  border-radius:30px; margin:0.5rem; transition:.3s; font-weight:600; 
+}
+.btn:hover {background:var(--background-color);}
