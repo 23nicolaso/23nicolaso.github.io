@@ -185,7 +185,7 @@ background-size: 20px 20px;
 
 .projects h2 {
   font-size: 2.5rem;
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
 }
 
@@ -286,7 +286,7 @@ background-size: 20px 20px;
 }
 
 .contact-button:hover {
-  background: var(--darkerbg-color);
+  background: var(--accent-color);
 }
 
 /* Footer */
@@ -344,7 +344,7 @@ footer {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: #111;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 .project-banner {
@@ -360,13 +360,14 @@ footer {
   min-width: 280px; /* Example: prevents cards from becoming too narrow */
   display: flex; /* To help with internal alignment if needed */
   flex-direction: column; /* Stack image and overlay vertically */
+  max-height: 50vh;
 }
 
 .project-banner img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 30px; /* ensures rounded corners */
+  height: 100%;
+  max-height: 30vh;
   transition: transform 0.8s ease;
 }
 
@@ -376,19 +377,18 @@ footer {
 
 /* Gradient overlay with subtle fade */
 .overlay {
-  position: absolute; /* Keeping overlay absolute for now */
+  /* position: absolute; Keeping overlay absolute for now */
   inset: 0;
   border-radius: 20px; /* Match banner radius */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%);
   display: flex;
   align-items: end;
   padding: 1rem; /* Reduced padding */
   transition: background 0.3s ease;
 }
-
+/* 
 .project-banner:hover .overlay {
   background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%);
-}
+} */
 
 .overlay-content {
   color: var(--background-color);
@@ -400,13 +400,14 @@ footer {
   font-size: 1.3rem; /* Reduced font size */
   margin-bottom: 0.3rem;
   font-weight: 600;
-  color: var(--background-color);
+  color: var(--primary-color);
 }
 
 .overlay-content p {
   font-size: 0.85rem; /* Reduced font size */
   margin-bottom: 0.8rem;
-  color: var(--background-color); /* Slightly lighter color for sub-text */
+  color: var(--primary-color); /* Slightly lighter color for sub-text */
+  /* background-color: var(--accent-color); */
   /* Optionally limit lines of text shown */
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Show max 2 lines of text */
@@ -424,6 +425,8 @@ footer {
   padding: 0.2rem 0.5rem; /* Reduced padding */
   font-size: 0.7rem;    /* Reduced font size */
   border-radius: 10px;
+  background-color: var(--primary-color);
+  color: var(--background-color);
 }
 
 /* Optional: change colors for specific frameworks */
@@ -438,10 +441,12 @@ footer {
   padding: 0.5rem 1rem; /* Reduced padding */
   font-size: 0.8rem;   /* Reduced font size */
   border-radius: 20px;
+  background-color: var(--darkerbg-color);
+  color: var(--primary-color);
 }
 
 .overlay-content .overlay-btn:hover {
-  background: var(--background-color);
+  background: var(--accent-color);
 }
 
 /* Positioning options */
@@ -452,7 +457,7 @@ footer {
 
 
 .project-content {
-  max-width:900px; margin: 3rem auto; padding:0 1rem; 
+  max-width:900px; margin: 3rem auto; padding:0 1rem;
 }
 .project-banner {
   width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -460,8 +465,9 @@ footer {
 .section {
   margin: 3rem 0;
 }
+
 .section h2 {
-  font-size:2rem; margin-bottom:1rem; text-align:center;
+  font-size:2rem; margin-bottom:1rem; text-align:left;
 }
 .features {
   display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
@@ -477,4 +483,4 @@ footer {
   display:inline-block; background:var(--accent-color); color:var(--background-color); padding:0.75rem 1.5rem;
   border-radius:30px; margin:0.5rem; transition:.3s; font-weight:600; 
 }
-.btn:hover {background:var(--background-color);}
+.btn:hover {background:var(--primary-color);}
