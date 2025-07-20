@@ -298,6 +298,8 @@ footer {
   background: var(--background-color);
 }
 
+
+
 /* Responsive adjustments for the grid */
 @media(max-width: 992px) {
   .project-banner {
