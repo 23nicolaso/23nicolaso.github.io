@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ollama Market — Nicolas Ollivier</title>
+  <meta name="description" content="LLM-powered stock market simulation with a Cython order-matching engine." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<section>
+  <h1>Ollama Market</h1>
+  <p class="muted">
+    Stock market simulation built to experiment with locally hosted LLM agents.
+  </p>
+
+  <!-- Replace with real GIF later -->
+  <img src="../assets/ollama-market.gif"
+       alt="Ollama Market demo"
+       style="width:100%;border-radius:16px;margin:2rem 0;" />
+
+  <h2>Overview</h2>
+  <p>
+    Ollama Market is a simulated stock exchange where autonomous LLM agents
+    place trades based on market conditions and news. The project was built to
+    explore the limits of local 8B parameter models in multi-agent environments.
+  </p>
+
+  <h2>Architecture</h2>
+  <ul>
+    <li><strong>Cython order-matching engine</strong> with ~2µs average latency</li>
+    <li>Flask HTTP API serving market state and trades</li>
+    <li>HTML/CSS/JS frontend for real-time visualization</li>
+    <li>Local text-to-speech market commentators using Kokoro-82M</li>
+  </ul>
+
+  <h2>Engineering Challenges</h2>
+  <ul>
+    <li>Reducing Python overhead in performance-critical paths</li>
+    <li>Designing deterministic simulations despite stochastic LLM behavior</li>
+    <li>Maintaining consistent state across concurrent agent actions</li>
+  </ul>
+
+  <h2>What I Learned</h2>
+  <ul>
+    <li>How to identify and optimize bottlenecks using Cython</li>
+    <li>Tradeoffs between simulation realism and determinism</li>
+    <li>Evaluating LLM behavior beyond prompt quality</li>
+  </ul>
+
+  <a href="https://github.com/23nicolaso" target="_blank">View on GitHub →</a>
+</section>
+
+</body>
+</html>

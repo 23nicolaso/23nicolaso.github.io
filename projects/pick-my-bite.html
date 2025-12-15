@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pick My Bite — Nicolas Ollivier</title>
+  <meta name="description" content="Full-stack mobile app using React Native, AWS Lambda, and PostgreSQL." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<section>
+  <h1>Pick My Bite</h1>
+  <p class="muted">
+    Mobile app that helps groups decide where to eat.
+  </p>
+
+  <img src="../assets/pick-my-bite.png"
+       alt="Pick My Bite demo"
+       style="width:100%;border-radius:16px;margin:2rem 0;" />
+
+  <h2>Overview</h2>
+  <p>
+    Pick My Bite is a full-stack mobile application that simplifies group dining
+    decisions by aggregating preferences and nearby restaurant data.
+  </p>
+
+  <h2>Architecture</h2>
+  <ul>
+    <li>React Native frontend</li>
+    <li>Serverless Node.js backend on AWS Lambda</li>
+    <li>PostgreSQL database for caching and persistence</li>
+    <li>Google Places API integration</li>
+  </ul>
+
+  <h2>Engineering Decisions</h2>
+  <ul>
+    <li>Implemented API response caching to reduce Google API costs</li>
+    <li>Designed stateless Lambdas for horizontal scalability</li>
+    <li>Normalized database schema to avoid duplicate place records</li>
+  </ul>
+
+  <h2>What I Learned</h2>
+  <ul>
+    <li>Designing cost-aware cloud architectures</li>
+    <li>Managing async flows in serverless environments</li>
+    <li>Building production-ready mobile APIs</li>
+  </ul>
+
+  <a href="https://github.com/23nicolaso" target="_blank">View on GitHub →</a>
+</section>
+
+</body>
+</html>

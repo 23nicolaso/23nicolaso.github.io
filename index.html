@@ -1,222 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nicolas Ollivier — Portfolio</title>
-<link rel="stylesheet" href="styles.css" />
-<script defer src="scripts.js"></script>
-</head>
+  <!-- SEO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicolas Ollivier — Software Engineer</title>
+  <meta name="description" content="Nicolas Ollivier — Software Engineer at NYU. Experience in LLM systems, backend engineering, and game development." />
 
+  <!-- OpenGraph / LinkedIn -->
+  <meta property="og:title" content="Nicolas Ollivier — Software Engineer" />
+  <meta property="og:description" content="Software engineer building games, systems, and LLM-powered products." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nicolasollivier.dev" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --card: #141821;
+      --text: #e7e9ee;
+      --muted: #9aa4b2;
+      --accent: #7c7cff;
+      --accent-2: #4fd1c5;
+      --glow: rgba(124,124,255,0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1a1f2e, transparent), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(11,13,16,0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 10;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links a { margin-left: 1.5rem; color: var(--muted); font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: auto;
+      padding: 6rem 1rem 4rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { margin-top: 1.5rem; color: var(--muted); max-width: 520px; }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.8rem 1.3rem;
+      border-radius: 12px;
+      font-weight: 500;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      padding: 0.8rem 1.3rem;
+      border-radius: 12px;
+      font-weight: 500;
+      color: #0b0d10;
+      border: none;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 0 4px var(--glow);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+    section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+
+    /* SKILLS */
+    .skills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+    }
+    .project {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 1.6rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor: pointer;
+    }
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--glow);
+    }
+    .project p { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
+
+    /* RESUME MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-content {
+      width: 90%;
+      max-width: 900px;
+      height: 90vh;
+      background: var(--bg);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .modal iframe { width: 100%; height: 100%; border: none; }
+
+    footer {
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
 <body>
-<nav class="main-nav">
-  <div class="nav-container">
-    <a href="index.html" class="nav-logo">Nicolas Ollivier</a>
-    <ul>
-  <a href="mailto:23nicolaso@gmail.com" class="contact-button">Email</a>
-  <a href="https://www.linkedin.com/in/nicolas-ollivier/" class="contact-button">LinkedIn</a>
-  <a href="Resume.pdf" class="contact-button">Resume</a>
-  <a href="https://github.com/23nicolaso" class="contact-button">Github</a>
-      </ul>
+
+<nav>
+  <div class="nav-inner">
+    <strong>Nicolas Ollivier</strong>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a id="resumeBtn">Resume</a>
+      <a href="mailto:no2172@nyu.edu">Contact</a>
+    </div>
   </div>
 </nav>
-<!-- Hero Section -->
 
-<!-- Projects Showcase --> 
-<section id="projects" class="projects-section">
-  <div class="project-banner">
-    <a href="balloonbats.html">
-    <img src="balloonbats/shop/Screenshot (630).png" alt="Project image"></a>
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>VR Intern @ Mayflower Worlds</h3>
-        <div class="badges">
-          <span class="badge">Unity</span>
-          <span class="badge">C#</span>
-          <span class="badge">PostgreSQL</span>
-          <span class="badge">Agile Development</span>
-          <span class="badge">VR</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>Here's what I worked on at Mayflower Worlds, LLC!</p>
-          <!-- Framework badges -->
-          
-        <a href="balloonbats.html" class="overlay-btn">View Details</a>
-        <a href="https://www.meta.com/experiences/balloon-bats/27706668015613967/?srsltid=AfmBOorvgVEyyKD2pElXpYgn957OQd98rI1PtC5yTSgAGVOImKe0MYAq" class="overlay-btn">Play the Game</a>
-      </div>
+<div class="hero">
+  <div>
+    <h1>Software Engineer<br />building <span class="gradient-text">games, systems & products</span></h1>
+    <p>CS @ NYU. LLM systems, backend engineering, and shipped games with real-world impact.</p>
+    <div class="hero-actions">
+      <button class="btn primary" id="resumeBtn2">View Resume</button>
+      <a class="btn" href="https://github.com/23nicolaso" target="_blank">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/nicolas-ollivier/" target="_blank">LinkedIn</a>
     </div>
   </div>
 
-  <div class="project-banner">
-    <!-- <a href="pickmybite.html"> -->
-    <img src="pickmybite/heatmap.png" alt="Pickmybite Heatmap">
-    <!-- </a> -->
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>Project: Pickmybite</h3>
-        
-        <div class="badges">
-          <span class="badge">React.JS</span>
-          <span class="badge">Express.JS</span>
-          <span class="badge">PostgreSQL</span>
-          <span class="badge">AWS</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>An app that picks a dinner spot for you!</p>
-
-        <!-- Framework badges -->
-        <a href="pickmybite.html" class="overlay-btn">View Details</a>
-      </div>
-    </div>
+  <div class="hero-card">
+    <p><strong>Work Experience</strong></p>
+    <p class="muted">AI Research Fellow @ Handshake AI</p>
+    <p class="muted">Software Engineering Intern @ Mayflower Worlds</p>
+    <p class="muted">Software Engineering Intern @ Thai Informatic Systems</p>
   </div>
+</div>
 
-  <div class="project-banner">
-    <!-- <a href="pickmybite.html"> -->
-    <img src="gameplay.png" alt="Pong Clone">
-    <!-- </a> -->
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>Basket Pong</h3>
-        
-        <div class="badges">
-          <span class="badge">C++</span>
-          <span class="badge">Raylib</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>A pong clone I made for game programming class!</p>
-
-        <!-- Framework badges -->
-        <a href="https://github.com/23nicolaso/PongClone" class="overlay-btn">View Repo</a>
-      </div>
-    </div>
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <span class="skill">Python</span>
+    <span class="skill">C++</span>
+    <span class="skill">C#</span>
+    <span class="skill">JavaScript / TypeScript</span>
+    <span class="skill">Java</span>
+    <span class="skill">React</span>
+    <span class="skill">Node.js</span>
+    <span class="skill">Flask</span>
+    <span class="skill">PostgreSQL</span>
+    <span class="skill">AWS</span>
+    <span class="skill">Unity</span>
   </div>
-
-  <!-- Project Banner 1 -->
-  <div class="project-banner">
-    <img src="ollama/ollama.png" alt="Simulated Stock Market Chart">
-
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>Ollama Market</h3>
-        
-        <div class="badges">
-          <span class="badge">Python</span>
-          <span class="badge">HTML5</span>
-          <span class="badge">Cython</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>Simulated stock trading world with Local LLMs!</p>
-
-        <!-- Framework badges -->
-        <a href="project1.html" class="overlay-btn">View Details</a>
-      </div>
-    </div>
-  </div>
-
-        <!-- Project Banner 2 -->
-  <div class="project-banner">
-    <!-- <a href="project2.html"> -->
-    <img src="gacha-clicker/gachaclicker.png" alt="Project image">
-    <!-- </a> -->
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>Gacha Clicker</h3>
-        
-        <div class="badges">
-          <span class="badge">React.JS</span>
-          <span class="badge">Typescript</span>
-          <span class="badge">Vite</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>Cookie clicker, but with Gacha mechanics!</p>
-          <!-- Framework badges -->
-        <a href="project2.html" class="overlay-btn">View Details</a>
-        <a href="https://nicolasollivier.dev/GachaClicker/" class="overlay-btn">Play the Game</a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Project Banner 3 -->
-  <div class="project-banner">
-    <img src="crypto.png" alt="Project image">
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>TradingView Indicator Suite</h3>
-        
-        <div class="badges">
-          <span class="badge">Pinescript</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>21 unique and open source trading indicators.</p>
-          <!-- Framework badges -->
-        <a href="project3.html" class="overlay-btn">View Details</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-banner">
-    <img src="zombiebaseball.png" alt="Project image">
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>Zombie Baseball</h3>
-        
-        <div class="badges">
-          <span class="badge">Unity</span>
-          <span class="badge">C#</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>Whack zombies with a baseball bat in this game!</p>
-          <!-- Framework badges -->
-        <a href="https://alix-ollivier.itch.io/zombie-baseball" class="overlay-btn">Play the Game</a>
-      </div>
-    </div>
-  </div>
-
-    <!-- Project Banner 3 -->
-  <div class="project-banner">
-    <img src="ajnx.png" alt="Project image">
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>AJNX Banking</h3>
-        <div class="badges">
-          <span class="badge">SQL</span>
-          <span class="badge">HeroUI</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>A banking app I made for databases group project.</p>
-          <!-- Framework badges -->
-          
-        <a href="https://db.aerex.tk/transactions" class="overlay-btn">View Website</a>
-      </div>
-    </div>
-  </div>
-  <div class="project-banner">
-    <img src="repairthewaves.png" alt="Project image">
-    <div class="overlay">
-      <div class="overlay-content bottom-left">
-        <h3>RepairTheWaves.com</h3>
-        <!-- Framework badges -->
-        <div class="badges">
-          <span class="badge">HTML</span>
-          <span class="badge">JS</span>
-          <span class="badge">CSS</span>
-          <!-- add more badges as needed -->
-        </div>
-        <p>A website I made for a social enterprise.</p>
-  
-        <a href="https://repairthewaves.com" class="overlay-btn">View Website</a>
-      </div>
-    </div>
-  </div>
-
-
 </section>
 
+<section id="projects">
+  <h2>Selected Projects</h2>
+  <div class="projects">
+    <div class="project" onclick="location.href='projects/balloon-bats.html'">
+      <h3>Balloon Bats</h3>
+      <p>VR game monetization & multiplayer backend with 195% revenue increase.</p>
+    </div>
+    <div class="project" onclick="location.href='projects/ollama-market.html'">
+      <h3>Ollama Market</h3>
+      <p>LLM-powered stock market simulation with a Cython order-matching engine.</p>
+    </div>
 
+    <div class="project" onclick="location.href='projects/pick-my-bite.html'">
+      <h3>Pick My Bite</h3>
+      <p>Full-stack mobile app using React Native, AWS Lambda, and PostgreSQL.</p>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <p>&copy; 2025 Nicolas Ollivier. All rights reserved.</p>
+  © 2025 Nicolas Ollivier · <a id="resumeBtn3">Resume</a> · <a href="mailto:no2172@nyu.edu">Email</a>
 </footer>
+
+<!-- RESUME MODAL -->
+<div class="modal" id="resumeModal">
+  <div class="modal-content">
+    <iframe src="resume.pdf"></iframe>
+  </div>
+</div>
+
+<script>
+  // Fade-in on scroll
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+  }, { threshold: 0.15 });
+  sections.forEach(s => observer.observe(s));
+
+  // Resume modal
+  const modal = document.getElementById('resumeModal');
+  const openBtns = ['resumeBtn','resumeBtn2','resumeBtn3'].map(id => document.getElementById(id));
+  openBtns.forEach(btn => btn && btn.addEventListener('click', () => modal.style.display = 'flex'));
+  modal.addEventListener('click', () => modal.style.display = 'none');
+</script>
 
 </body>
 </html>

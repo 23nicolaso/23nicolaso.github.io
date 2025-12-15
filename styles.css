@@ -1,534 +1,125 @@
-/* Import beautiful modern font, similar in feel to Apple’s San Francisco */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-:root {
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --primary-color: #DFD0B8;
-  --accent-color: #948979;
-  --background-color: #000000;
-  --darkerbg-color: #222831;
-}
-
-/* Reset */
+/* ===== RESET ===== */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  font-family: var(--font);
-  background: var(--background-color);
-  color: var(--primary-color);
-  line-height: 1.6;
+html {
   scroll-behavior: smooth;
 }
 
-h1, h2, h3 {
-  font-weight: 600;
+/* ===== THEME ===== */
+:root {
+  --bg: #0b0d10;
+  --card: #141821;
+  --text: #e7e9ee;
+  --muted: #9aa4b2;
+  --accent: #7c7cff;
+  --accent-2: #4fd1c5;
+  --border: rgba(255,255,255,0.1);
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 600px at 10% -10%, #1a1f2e, transparent), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding: 3rem 1rem;
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--accent);
   text-decoration: none;
 }
 
-/* Basic Navbar Styling */
-.main-nav {
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  background: #000;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.main-nav .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.main-nav .nav-logo {
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--primary-color);
-}
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-.main-nav ul a {
-  color: var(--primary-color);
-  font-weight: 500;
-}
-.main-nav ul a:hover {
-  color: var(--accent-color);
+a:hover {
+  text-decoration: underline;
 }
 
-/* Hero Section */
-.carousel-container {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  margin: 4rem auto;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.6s ease;
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-/* All images styled equally */
-.carousel-track img {
-  width: 80%;
-  max-width: 600px;
-  border-radius: 20px;
-  flex-shrink: 0;
-  pointer-events: none;
-  user-select: none;
-  transition: 
-    transform 0.6s ease,
-    filter 0.6s ease,
-    opacity 0.6s ease;
-}
-
-/* Container controls positioning */
-.carousel-container .carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 3rem;
-  background: var(--primary-color);
-  /* color: #fff; */
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-.carousel-container .carousel-btn:hover {
-  background: rgba(0,0,0,0.6);
-}
-.carousel-container .prev { left: 10px; }
-.carousel-container .next { right: 10px; }
-
-/* Center image is large & sharp; sides are blurred, slightly smaller, less opaque */
-.carousel-track img {
-  opacity: 0.3;
-  filter: blur(3px);
-  transform: scale(0.85);
-}
-.carousel-track img.active {
-  opacity: 1;
-  filter: none;
-  transform: scale(1);
-}
-
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem; /* spacing between image and text */
-  padding: 2rem;
-  flex-wrap: wrap; /* lets it stack on small screens */
-  text-align: center; /* text aligns left */
-}
-
-.hero-selfie {
-  max-width: 250px;   /* fixed size for image */
-  width: 100%;
-  border-radius: 50%; /* if you want circular selfie */
-  flex-shrink: 0;     /* keeps it from shrinking too small */
-}
-
-.hero-content {
-  max-width: 600px; /* keeps text readable */
-}
-
-.hero-content p {
-  font-size: 1.3rem; /* Slightly reduced size */
-  margin-bottom: 2rem;
-}
-
-.scroll-down {
-  font-size: 1.2rem;
-  border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 0.3rem;
-  transition: opacity 0.3s;
-}
-
-.scroll-down:hover {
-  opacity: 0.7;
-}
-
-/* Projects Section */
-.projects {
-  padding: 5rem 2rem;
-  max-width: 1200px;
+/* ===== LAYOUT ===== */
+section {
+  max-width: 900px;
   margin: auto;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    transparent
+  );
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 3rem;
 }
 
-.projects h2 {
-  font-size: 2.5rem;
-  text-align: left;
-  margin-bottom: 3rem;
+/* ===== HEADINGS ===== */
+h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
 }
 
-.project {
-  margin-bottom: 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
+h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
 }
 
-.project.visible {
-  opacity: 1;
-  transform: translateY(0);
+p {
+  margin-top: 0.6rem;
+  color: var(--text);
 }
 
-.project img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+.muted {
+  color: var(--muted);
 }
 
-.project-info {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
+/* ===== LISTS ===== */
+ul {
+  margin-top: 0.8rem;
+  margin-left: 1.2rem;
 }
 
-.project-info h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+li {
+  margin-bottom: 0.4rem;
+  color: var(--text);
 }
 
-.project-info p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-info a {
-  font-weight: 600;
-  border-bottom: 2px solid var(--accent-color);
-}
-
-.project-hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* min-height: 90vh; */ /* Original value */
-  min-height: 30vh;    /* Reduced height - adjust as you see fit */
-  /* Consider a max-height too, e.g., max-height: 700px; */
-  padding: 4rem 2rem; /* You might want to adjust padding */
-  text-align: center;
-  /* Optional: Add a subtle pattern or gradient for more impact */
-  /* Example pattern (you can find many CSS pattern generators online): */
-  background-color: var(--background-color);
-  opacity: 0.9;
-  background-image:  linear-gradient(var(--darkerbg-color) 1px, transparent 1px), linear-gradient(to right, var(--darkerbg-color) 1px, var(--background-color) 1px);
-  background-size: 20px 20px;
-}
-
-.project-hero-content h1 {
-  font-size: clamp(2rem, 7vw, 3.5rem); /* Slightly reduced max size for h1 if desired */
-  margin-bottom: 1rem;
-}
-
-.project-hero-content p {
-  font-size: 1.3rem; /* Slightly reduced size */
-  margin-bottom: 2rem;
-}
-
-/* Contact */
-.contact {
-  background: var(--darkerbg-color);
-  padding: 5rem 2rem;
-  text-align: center;
-}
-
-.contact h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.contact p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-}
-
-.contact-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background: var(--background-color);
-  color: var(--primary-color);
-  border-radius: 30px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.contact-button:hover {
-  color: var(--background-color);
-  background: var(--accent-color);
-}
-
-/* Footer */
-footer {
-  padding: 2rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--primary-color);
-  background: var(--background-color);
-}
-
-
-
-/* Responsive adjustments for the grid */
-@media(max-width: 992px) {
-  .project-banner {
-    /* 2 items per row */
-    width: calc((100% / 2) - (1.5rem * 1 / 2));
-    flex-basis: calc((100% / 2) - (1.5rem * 1 / 2));
-  }
-}
-
-@media(max-width: 600px) {
-  .projects-section {
-    padding: 0 1rem; /* Adjust padding for smaller screens */
-  }
-  .project-banner {
-    /* 1 item per row */
-    width: 100%;
-    flex-basis: 100%;
-    min-width: unset; /* Remove min-width if it conflicts on very small screens */
-  }
-  .overlay-content h3 {
-    font-size: 1.5rem; /* Slightly larger for single column layout */
-  }
-  .overlay-content p {
-    font-size: 0.9rem;
-    -webkit-line-clamp: 3; /* Allow more lines when single column */
-  }
-}
-
-
-/* Apple-style Projects Section */
-.projects-section {
-  max-width: 1200px;
-  margin: 5rem auto;
-  padding: 0 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1.5rem;
-}
-.projects-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  font-weight: 600;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  color: var(--primary-color);
-  width: 100%;
-  text-align: left;
-}
-
-.project-banner {
-  background-color: var(--darkerbg-color);
-  position: relative;
-  /* margin-bottom: 3rem; */
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  width: calc((100% / 3) - (1.5rem*2/3));
-  flex-grow: 1;
-  flex-basis: calc((100% / 3) - (1.5rem * 2 / 3));
-  /* Add a min-width for very small calculations if needed, or rely on media queries */
-  min-width: 280px; /* Example: prevents cards from becoming too narrow */
-  display: flex; /* To help with internal alignment if needed */
-  flex-direction: column; /* Stack image and overlay vertically */
-  max-height: 50vh;
-}
-
-.project-banner img {
+/* ===== MEDIA ===== */
+img {
   display: block;
   width: 100%;
-  height: 100%;
-  max-height: 30vh;
-  transition: transform 0.8s ease;
+  margin: 2rem 0;
+  border-radius: 16px;
+  border: 1px solid var(--border);
 }
 
-.project-banner:hover img {
-  transform: scale(1.02);
-}
-
-/* Gradient overlay with subtle fade */
-.overlay {
-  /* position: absolute; Keeping overlay absolute for now */
-  inset: 0;
-  border-radius: 20px; /* Match banner radius */
-  display: flex;
-  align-items: end;
-  padding: 1rem; /* Reduced padding */
-  transition: background 0.3s ease;
-}
-/* 
-.project-banner:hover .overlay {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%);
-} */
-
-.overlay-content {
-  color: var(--background-color);
-  max-width: 100%; /* Allow content to use full width of the padding box */
-  text-align: left;
-}
-
-.overlay-content h3 {
-  font-size: 1.3rem; /* Reduced font size */
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.overlay-content p {
-  font-size: 0.85rem; /* Reduced font size */
-  margin-bottom: 0.8rem;
-  color: var(--primary-color); /* Slightly lighter color for sub-text */
-  /* background-color: var(--accent-color); */
-  /* Optionally limit lines of text shown */
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Show max 2 lines of text */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.overlay-content .badges {
-  margin-bottom: 0.8rem; /* Reduced margin */
-  gap: 0.3rem; /* Reduced gap */
-}
-
-.badge {
-  padding: 0.2rem 0.5rem; /* Reduced padding */
-  font-size: 0.7rem;    /* Reduced font size */
-  border-radius: 10px;
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-
-/* Optional: change colors for specific frameworks */
-.badge.react { background-color: #61dafb33; }
-.badge.vue { background-color: #42b88333; }
-.badge.angular { background-color: #dd003133; }
-.badge.tailwind { background-color: #38bdf833; }
-.badge.django { background-color: #0c4b3333; }
-
-
-.overlay-content .overlay-btn {
-  padding: 0.5rem 1rem; /* Reduced padding */
-  font-size: 0.8rem;   /* Reduced font size */
-  border-radius: 20px;
-  background-color: var(--background-color);
-  color: var(--primary-color);
-}
-
-.overlay-content .overlay-btn:hover {
-  background: var(--accent-color);
-  color: var(--background-color);
-}
-
-/* Positioning options */
-.bottom-left {
-  align-self: flex-end;
-}
-
-.about-project {
-  background: var(--background-color);
-  border-left: 5px solid var(--accent-color);
-  padding: 2rem;
+/* ===== BUTTON / LINK ===== */
+section > a {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #0b0d10;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  line-height: 1.8;
-}
-.about-project strong {
-  color: var(--accent-color);
+  font-weight: 500;
 }
 
-.project-content {
-  max-width:900px; margin: 3rem auto; padding:0 1rem;
-}
-.project-banner {
-  width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-.section {
-  margin: 3rem 0;
+section > a:hover {
+  text-decoration: none;
+  opacity: 0.9;
 }
 
-.section h2 {
-  font-size:2rem; margin-bottom:1rem; text-align:left;
-}
-.features {
-  display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
-}
-.feature-box {
-  background:var(--darkerbg-color); padding:1.5rem; border-radius:15px; flex:1 1 250px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-.project-links {
-  text-align:center; margin-top:3rem;
-}
-.btn {
-  display:inline-block; background:var(--accent-color); color:var(--background-color); padding:0.75rem 1.5rem;
-  border-radius:30px; margin:0.5rem; transition:.3s; font-weight:600; 
-}
-.btn:hover {background:var(--primary-color);}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 4 per row on desktop */
-  gap: 1.5rem;
-  margin: 4rem auto;
-  max-width: 1200px;
-  padding: 0 1rem;
-}
-
-.image-grid img {
-  width: 100%;
-  aspect-ratio: 16 / 16;  /* uniform rectangle size */
-  object-fit: cover;     /* crops edges neatly */
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.image-grid img:hover {
-  transform: scale(1.03);
-}
-
-/* Responsive breakpoints */
-@media (max-width: 1024px) {
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 per row on tablets */
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  body {
+    padding: 2rem 1rem;
   }
-}
 
-@media (max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on small tablets/phones */
+  section {
+    padding: 2rem 1.5rem;
   }
-}
 
-@media (max-width: 480px) {
-  .image-grid {
-    grid-template-columns: 1fr; /* 1 per row on very small screens */
+  h1 {
+    font-size: 2.1rem;
   }
 }
