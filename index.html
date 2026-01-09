@@ -1,289 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <!-- SEO -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nicolas Ollivier — Software Engineer</title>
-  <meta name="description" content="Nicolas Ollivier — Software Engineer at NYU. Experience in LLM systems, backend engineering, and game development." />
-
-  <!-- OpenGraph / LinkedIn -->
-  <meta property="og:title" content="Nicolas Ollivier — Software Engineer" />
-  <meta property="og:description" content="Software engineer building games, systems, and LLM-powered products." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nicolasollivier.dev" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #0b0d10;
-      --card: #141821;
-      --text: #e7e9ee;
-      --muted: #9aa4b2;
-      --accent: #7c7cff;
-      --accent-2: #4fd1c5;
-      --glow: rgba(124,124,255,0.25);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(1200px 600px at 10% -10%, #1a1f2e, transparent), var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(12px);
-      background: rgba(11,13,16,0.65);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      z-index: 10;
-    }
-    .nav-inner {
-      max-width: 1100px;
-      margin: auto;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links a { margin-left: 1.5rem; color: var(--muted); font-size: 0.95rem; }
-    .nav-links a:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      max-width: 1100px;
-      margin: auto;
-      padding: 6rem 1rem 4rem;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 3rem;
-    }
-    .hero h1 {
-      font-size: 3.2rem;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p { margin-top: 1.5rem; color: var(--muted); max-width: 520px; }
-
-    .hero-actions {
-      margin-top: 2.5rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn {
-      padding: 0.8rem 1.3rem;
-      border-radius: 12px;
-      font-weight: 500;
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform .2s ease, box-shadow .2s ease;
-      cursor: pointer;
-    }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      padding: 0.8rem 1.3rem;
-      border-radius: 12px;
-      font-weight: 500;
-      color: #0b0d10;
-      border: none;
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 0 4px var(--glow);
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 2rem;
-    }
-
-    /* SECTIONS */
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 4rem 1rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    section.visible { opacity: 1; transform: translateY(0); }
-    section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-
-    /* SKILLS */
-    .skills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .skill {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* PROJECTS */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.6rem;
-    }
-    .project {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 1.6rem;
-      transition: transform .25s ease, box-shadow .25s ease;
-      cursor: pointer;
-    }
-    .project:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--glow);
-    }
-    .project p { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
-
-    /* RESUME MODAL */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-    .modal-content {
-      width: 90%;
-      max-width: 900px;
-      height: 90vh;
-      background: var(--bg);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .modal iframe { width: 100%; height: 100%; border: none; }
-
-    footer {
-      padding: 2rem 1rem 3rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.6rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolas Ollivier | Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white text-slate-900 dark:bg-[#0a0a0a] dark:text-slate-100 font-sans">
 
-<nav>
-  <div class="nav-inner">
-    <strong>Nicolas Ollivier</strong>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a id="resumeBtn">Resume</a>
-      <a href="mailto:no2172@nyu.edu">Contact</a>
-    </div>
-  </div>
-</nav>
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold tracking-tighter uppercase">N. Ollivier</span>
+            <div class="flex items-center space-x-4 md:space-x-8 text-sm font-medium text-slate-500">
+                <a href="#about" class="hidden md:block hover:text-blue-500 transition">About</a>
+                <a href="#experience" class="hidden md:block hover:text-blue-500 transition">Experience</a>
+                <a href="#projects" class="hidden md:block hover:text-blue-500 transition">Projects</a>
+                
+                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:ring-2 ring-blue-400 transition">
+                    <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-yellow-400"></i>
+                </button>
 
-<div class="hero">
-  <div>
-    <h1>Software Engineer<br />building <span class="gradient-text">games, systems & products</span></h1>
-    <p>CS @ NYU. LLM systems, backend engineering, and shipped games with real-world impact.</p>
-    <div class="hero-actions">
-      <a class="btn" id="resumeBtn2">View Resume</button>
-      <a class="btn" href="https://github.com/23nicolaso" target="_blank">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/nicolas-ollivier/" target="_blank">LinkedIn</a>
-    </div>
-  </div>
+            </div>
+        </div>
+    </nav>
 
-  <div class="hero-card">
-    <p><strong>Work Experience</strong></p>
-    <p class="muted">AI Research Fellow @ Handshake AI</p>
-    <p class="muted">Software Engineering Intern @ Mayflower Worlds</p>
-    <p class="muted">Software Engineering Intern @ Thai Informatic Systems</p>
-  </div>
-</div>
+    <section class="pt-40 pb-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Software Engineer & <br><span class="gradient-text">Systems Architect.</span></h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed mb-8">
+                Computer Science @ <strong>NYU</strong>. Specializing in high-performance systems, FinTech simulations, and LLM research. </p>
+            <div class="flex space-x-6">
+                <a href="https://github.com/23nicolaso" class="text-2xl hover:text-blue-500 transition"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/nicolas-ollivier/" class="text-2xl hover:text-blue-500 transition"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="skills">
-    <span class="skill">Python</span>
-    <span class="skill">C++</span>
-    <span class="skill">C#</span>
-    <span class="skill">JavaScript / TypeScript</span>
-    <span class="skill">Java</span>
-    <span class="skill">React</span>
-    <span class="skill">Node.js</span>
-    <span class="skill">Flask</span>
-    <span class="skill">PostgreSQL</span>
-    <span class="skill">AWS</span>
-    <span class="skill">Unity</span>
-  </div>
-</section>
+    <section id="about" class="py-20 px-6 border-t border-slate-100 dark:border-slate-900">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 italic text-blue-500">// About Me</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-2 space-y-6 text-lg text-slate-600 dark:text-slate-400">
+                    <p>
+                        I am a developer driven by performance and efficiency. Whether it's architecting a <strong>custom C++ game engine</strong> or optimizing a <strong>Cython-based matching engine</strong> to sub-2µs latency, I enjoy solving complex problems at the intersection of hardware and software. </p>
+                    <p>
+                        Currently, I am an <strong>AI Research Fellow at Handshake AI</strong>, focusing on LLM alignment and benchmarking. My background in Finance allows me to approach technical challenges with a unique perspective on cost-optimization and market dynamics. </p>
+                </div>
+                <div class="bg-slate-50 dark:bg-[#111] p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-slate-500">Academic Background</h3>
+                    <p class="text-sm font-bold">New York University </p>
+                    <p class="text-xs text-slate-500 mb-4">B.S. Computer Science | Minor in Finance </p>
+                    <p class="text-sm font-bold">GPA: 3.55/4.0 </p>
+                    <p class="text-xs text-slate-500 italic">Dean's List 2024-2025 </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="projects">
-  <h2>Selected Projects</h2>
-  <div class="projects">
-    <div class="project" onclick="location.href='projects/balloon-bats.html'">
-      <h3>Balloon Bats</h3>
-      <p>VR game monetization & multiplayer backend with 195% revenue increase.</p>
-    </div>
-    <div class="project" onclick="location.href='projects/ollama-market.html'">
-      <h3>Ollama Market</h3>
-      <p>LLM-powered stock market simulation with a Cython order-matching engine.</p>
-    </div>
+    <section id="experience" class="py-20 px-6 bg-slate-50 dark:bg-[#0d0d0d]">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 italic text-blue-500">// Experience</h2>
+            <div class="space-y-12">
+                
+                <div class="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800">
+                    <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1"></div>
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">AI Research Fellow</h3> <p class="text-blue-500 font-medium">Handshake AI</p> </div>
+                        <p class="text-sm text-slate-500">Oct 2025 – Present</p> </div>
+                    <ul class="text-slate-600 dark:text-slate-400 space-y-2 list-disc list-inside text-sm">
+                        <li>Evaluated production LLMs for enterprise clients, improving alignment and response quality. </li>
+                        <li>Performed error-mode analysis and quality benchmarking of model outputs. </li>
+                        <li>Maintained training data pipeline by reviewing error analyses from distributed contributors. </li>
+                    </ul>
+                </div>
 
-    <div class="project" onclick="location.href='projects/pick-my-bite.html'">
-      <h3>Pick My Bite</h3>
-      <p>Full-stack mobile app using React Native, AWS Lambda, and PostgreSQL.</p>
-    </div>
-  </div>
-</section>
+                <div class="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800">
+                    <div class="absolute w-4 h-4 bg-slate-300 dark:bg-slate-700 rounded-full -left-[9px] top-1"></div>
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Software Engineering Intern (C#)</h3> <p class="text-blue-500 font-medium">Mayflower Worlds</p> </div>
+                        <p class="text-sm text-slate-500">May 2025 – Aug 2025</p> </div>
+                    <ul class="text-slate-600 dark:text-slate-400 space-y-2 list-disc list-inside text-sm">
+                        <li>Redesigned store backend using C# and PostgreSQL, increasing average revenue per paying user by 195%. </li>
+                        <li>Implemented occlusion culling and lightmap baking to optimize performance, increasing FPS by 32%. </li>
+                        <li>Automated marketing workflows with an AI auto-clipping strategy generating 100,000+ views. </li>
+                        <li>Developed core gameplay functionalities and fixed 50+ networking bugs for VR. </li>
+                    </ul>
+                </div>
 
-<footer>
-  © 2025 Nicolas Ollivier · <a id="resumeBtn3">Resume</a> · <a href="mailto:no2172@nyu.edu">Email</a>
-</footer>
+                <div class="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800">
+                    <div class="absolute w-4 h-4 bg-slate-300 dark:bg-slate-700 rounded-full -left-[9px] top-1.5"></div>
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Software Engineering Intern (Python)</h3> <p class="text-blue-500 font-medium">Thai Informatic Systems</p> </div>
+                        <p class="text-sm text-slate-500">July 2022 – Aug 2022</p> </div>
+                    <ul class="text-slate-600 dark:text-slate-400 space-y-2 list-disc list-inside text-sm">
+                        <li>Deployed a full-stack chatbot using JavaScript and Google Dialogflow. </li>
+                        <li>Created a Python forecasting web-app with Matplotlib for data visualization. </li>
+                        <li>Redesigned the frontend for a government website. </li>
+                    </ul>
+                </div>
 
-<!-- RESUME MODAL -->
-<div class="modal" id="resumeModal">
-  <div class="modal-content">
-    <iframe src="/resume.pdf"></iframe>
-  </div>
-</div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  // Fade-in on scroll
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-  }, { threshold: 0.15 });
-  sections.forEach(s => observer.observe(s));
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 italic text-blue-500">// Fun Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="group p-8 rounded-2xl bg-white dark:bg-[#171717] border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Ollama Market</h3> <p class="text-slate-500 text-sm mb-6 leading-relaxed">Cython-based matching engine with 2µs latency. Uses local LLMs for real-time market commentary. </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Cython</span>
+                        <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Python</span>
+                        <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Gemma-3</span>
+                    </div>
+                </div>
 
-  // Resume modal
-  const modal = document.getElementById('resumeModal');
-  const openBtns = ['resumeBtn','resumeBtn2','resumeBtn3'].map(id => document.getElementById(id));
-  openBtns.forEach(btn => btn && btn.addEventListener('click', () => modal.style.display = 'flex'));
-  modal.addEventListener('click', () => modal.style.display = 'none');
-</script>
+                <div class="group p-8 rounded-2xl bg-white dark:bg-[#171717] border border-slate-200 dark:border-slate-800 hover:border-purple-500 transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Suspicious Farming</h3> <p class="text-slate-500 text-sm mb-6 leading-relaxed">Custom C++ game engine built with Raylib. Focused on memory efficiency and modular architecture. </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C++</span>
+                        <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Raylib</span>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-slate-100 dark:border-slate-900 text-center">
+        <p class="text-slate-500 text-sm mb-4">Nicolas Ollivier &copy; 2026</p> <p class="text-xs text-slate-400">NYU Tandon School of Engineering</p> </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>
