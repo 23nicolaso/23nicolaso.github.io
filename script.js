@@ -23,10 +23,10 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+        navbar.style.background = 'rgba(247, 246, 243, 0.97)';
+        navbar.style.boxShadow = '0 1px 0 #e5e1da';
     } else {
-        navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+        navbar.style.background = 'rgba(247, 246, 243, 0.94)';
         navbar.style.boxShadow = 'none';
     }
 
@@ -101,25 +101,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Typing Effect for Hero Title (Optional Enhancement)
-const heroTitle = document.querySelector('.name');
-if (heroTitle) {
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
-    heroTitle.style.opacity = '1';
-
-    let index = 0;
-    function typeWriter() {
-        if (index < text.length) {
-            heroTitle.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, 100);
-        }
-    }
-
-    // Uncomment to enable typing effect
-    // setTimeout(typeWriter, 500);
-}
 
 // Dynamic Year in Footer
 const footer = document.querySelector('.footer p');
