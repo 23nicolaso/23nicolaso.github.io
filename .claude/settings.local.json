@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:nicolasollivier.dev)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $src=[System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\ASUS\\\\NuPortfolio\\\\shot_full.png\"\\); $rect=New-Object System.Drawing.Rectangle\\(190,2280,1060,1100\\); $bmp=New-Object System.Drawing.Bitmap\\(1060,1100\\); $g=[System.Drawing.Graphics]::FromImage\\($bmp\\); $g.DrawImage\\($src,\\(New-Object System.Drawing.Rectangle\\(0,0,1060,1100\\)\\),$rect,[System.Drawing.GraphicsUnit]::Pixel\\); $bmp.Save\\(\"C:\\\\Users\\\\ASUS\\\\NuPortfolio\\\\shot_ops.png\"\\); $g.Dispose\\(\\); $bmp.Dispose\\(\\); $src.Dispose\\(\\); \"cropped\")",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $src=[System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\ASUS\\\\NuPortfolio\\\\shot_v2.png\"\\); $rect=New-Object System.Drawing.Rectangle\\(190,1350,1060,800\\); $bmp=New-Object System.Drawing.Bitmap\\(1060,800\\); $g=[System.Drawing.Graphics]::FromImage\\($bmp\\); $g.DrawImage\\($src,\\(New-Object System.Drawing.Rectangle\\(0,0,1060,800\\)\\),$rect,[System.Drawing.GraphicsUnit]::Pixel\\); $bmp.Save\\(\"C:\\\\Users\\\\ASUS\\\\NuPortfolio\\\\shot_radar2.png\"\\); $g.Dispose\\(\\); $bmp.Dispose\\(\\); $src.Dispose\\(\\); \"done\")"
+    ]
+  }
+}
